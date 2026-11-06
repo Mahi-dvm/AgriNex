@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AgriNex — Connecting Farms. Delivering Freshness.</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Blueprint Navigation & Screen Switcher Bar -->
+  <header class="top-blueprint-bar">
+    <div class="blueprint-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#81c784" stroke-width="2.2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <span data-i18n="blueprintTitle">AgriNex 22-Screen Blueprint</span>
+    </div>
+    <div class="blueprint-controls">
+      <span id="current-screen-label" style="font-size:12px; font-weight:600; color:#c8e6c9;">Screen 1: Splash</span>
+      <button class="screen-selector-btn" onclick="toggleDrawer()">
+        <span data-i18n="jumpToScreen">Jump to Screen (1–22)</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 22-Screen Quick Switcher Drawer (Original 22 Screens in Exact Sequence) -->
+  <div id="screen-drawer" class="screen-drawer">
+    <div style="display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:0 auto 12px;">
+      <h3 style="font-size:15px; color:var(--primary-dark); font-weight:700;" data-i18n="screenIndexTitle">AgriNex 22-Screen Index</h3>
+      <button class="btn btn-outline btn-sm" onclick="closeDrawer()" data-i18n="close">Close</button>
+    </div>
+    <div class="drawer-grid" id="drawer-grid">
+      <!-- Populated dynamically by app.js -->
+    </div>
+  </div>
+
+  <!-- Mobile Viewport Frame -->
+  <main class="app-container">
+    
+    <!-- Phone Status Bar -->
+    <div class="phone-status-bar">
+      <span id="phone-clock">09:41</span>
+      <div class="status-icons">
+        <span style="font-size:9.5px; font-weight:700;">5G</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+        <svg width="16" height="11" viewBox="0 0 24 14" fill="currentColor"><rect x="1" y="1" width="19" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="3" width="12" height="8" rx="1"/><path d="M22 5v4" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SCREEN 1 — SPLASH
+         (No rotating loader, logo, tagline, continue)
+         ========================================== -->
+    <section id="screen-1" class="screen active">
+      <div class="splash-container">
+        <div class="splash-logo-circle">
+          <svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4C14 4 6 13 6 24c0 8.5 5.5 15.5 13.5 18.5V36c-4 0-6.5-2.5-7-6.5 3 0 6 1 8-1.5 2-2.5 3-6.5 3.5-12.5 4.5 3 7.5 7.5 7.5 13.5 0 2.5-.5 5-1.5 7v6.5C37 39 42 32 42 24 42 13 34 4 24 4z" fill="#2e7d32"/>
+            <path d="M24 10c0 8-3 14-8 17" stroke="#81c784" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h1 class="splash-title">AgriNex</h1>
+        <p class="splash-tagline" data-i18n="splashTagline">From Farm to Your Home</p>
+        <p class="splash-sub" data-i18n="splashSub">Connecting Farmers Directly with Consumers</p>
+        
+        <button id="get-started-btn" class="btn btn-primary" type="button" onclick="navigateTo(2)">
+          <span data-i18n="getStarted">Get Started</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 2 — LANGUAGE SELECTION
+         (Controls all 20 screens with clean single-language text)
+         ========================================== -->
+    <section id="screen-2" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(1)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="langSelectionTitle">Select Your Language</span>
+        <div style="font-size:12px; font-weight:600; color:var(--text-muted);">AgriNex</div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+        <h2 data-i18n="langSelectionTitle">Select Your Language</h2>
+        <p style="margin-top:4px;" data-i18n="langSelectionSub">Choose your preferred language for a localized farm-to-table experience.</p>
+
+        <div class="language-grid">
+          <div class="lang-card" data-lang="te" onclick="applyLanguage('te')">
+            <div>
+              <div class="lang-native">తెలుగు</div>
+              <div class="lang-english">Telugu</div>
+            </div>
+            <div class="radio-circle"></div>
+          </div>
+
+          <div class="lang-card selected" data-lang="en" onclick="applyLanguage('en')">
+            <div>
+              <div class="lang-native">English</div>
+              <div class="lang-english">English</div>
+            </div>
+            <div class="radio-circle"></div>
+          </div>
+
+                    <div class="lang-card" data-lang="hi" onclick="applyLanguage('hi')">
+            <div>
+              <div class="lang-native">हिन्दी</div>
+              <div class="lang-english">Hindi</div>
+            </div>
+            <div class="radio-circle"></div>
+          </div>
+
+          <div class="lang-card" data-lang="ta" onclick="applyLanguage('ta')">
+            <div>
+              <div class="lang-native">தமிழ்</div>
+              <div class="lang-english">Tamil</div>
+            </div>
+            <div class="radio-circle"></div>
+          </div>
+
+          <div class="lang-card" data-lang="kn" onclick="applyLanguage('kn')">
+            <div>
+              <div class="lang-native">ಕನ್ನಡ</div>
+              <div class="lang-english">Kannada</div>
+            </div>
+            <div class="radio-circle"></div>
+          </div>
+
+          <div class="lang-card" data-lang="ml" onclick="applyLanguage('ml')">
+            <div>
+              <div class="lang-native">മലയാളം</div>
+              <div class="lang-english">Malayalam</div>
+            </div>
+            <div class="radio-circle"></div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="navigateTo(3)" style="margin-top:auto;">
+          <span data-i18n="continue">Continue</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 3 — WELCOME
+         ========================================== -->
+    <section id="screen-3" class="screen">
+      <!-- Step 3A: Role Selection View -->
+      <div id="welcome-role-view" class="screen-scrollable welcome-scrollable" style="display:flex;">
+        <div class="welcome-container">
+          <div class="welcome-brand">
+            <div class="welcome-logo-icon">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="#2e7d32"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+            <h1 class="welcome-title">AgriNex</h1>
+            <p class="welcome-tagline" data-i18n="tagline">Connecting Farms. Delivering Freshness.</p>
+          </div>
+
+          <!-- Farm to Consumer Direct Bridge Illustration -->
+          <div class="welcome-illustration">
+            <svg width="100%" height="90" viewBox="0 0 300 130" fill="none">
+              <rect width="300" height="130" rx="14" fill="#e8f5e9"/>
+              <path d="M30 90h80v20H30z" fill="#a5d6a7"/>
+              <path d="M40 90l30-40 30 40H40z" fill="#2e7d32"/>
+              <circle cx="85" cy="40" r="12" fill="#fbc02d"/>
+              <path d="M50 75c0-10 10-10 10 0" stroke="#81c784" stroke-width="3"/>
+              <path d="M125 70h50" stroke="#2e7d32" stroke-width="3" stroke-dasharray="4 4"/>
+              <polygon points="175,70 167,65 167,75" fill="#2e7d32"/>
+              <rect x="195" y="55" width="28" height="45" rx="3" fill="#81c784"/>
+              <rect x="228" y="45" width="34" height="55" rx="3" fill="#43a047"/>
+              <polygon points="212,40 190,55 234,55" fill="#1b5e20"/>
+              <circle cx="212" cy="70" r="3" fill="#fff"/>
+              <circle cx="245" cy="60" r="3" fill="#fff"/>
+              <circle cx="245" cy="75" r="3" fill="#fff"/>
+            </svg>
+            <div class="welcome-pill-sub" data-i18n="directMarketplaceBadge">100% Direct Farmer to Consumer Marketplace</div>
+          </div>
+
+          <!-- Role Action Buttons -->
+          <div class="welcome-actions">
+            <!-- Farmer Button -> Screen 4 -->
+            <div class="role-btn-card" onclick="navigateTo(4)">
+              <div class="role-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/><path d="M3 20a9 9 0 0 1 18 0"/><path d="M12 12v3"/><circle cx="12" cy="18" r="1.5"/></svg>
+              </div>
+              <div class="role-text-col">
+                <div class="role-title" data-i18n="iamFarmer">I’m a Farmer</div>
+                <div class="role-sub" data-i18n="iamFarmerSub">List fresh harvest, set your price & sell directly</div>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+
+            <!-- Customer Button -> Triggers Customer Profile Setup -->
+            <div class="role-btn-card" onclick="startCustomerRegistration()">
+              <div class="role-icon" style="background:#e3f2fd; color:#1976d2;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              </div>
+              <div class="role-text-col">
+                <div class="role-title" data-i18n="iamCustomer">I’m a Customer</div>
+                <div class="role-sub" data-i18n="iamCustomerSub">Buy farm-fresh vegetables & fruits from local growers</div>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+
+            <!-- Delivery Partner Button -> Screen 22 (Delivery Partner Home) -->
+            <div class="role-btn-card" onclick="navigateTo(22)">
+              <div class="role-icon" style="background:#0f172a; color:#22d3ee;">
+                <span style="font-size:22px;">🛵</span>
+              </div>
+              <div class="role-text-col">
+                <div class="role-title" data-i18n="iamDeliveryPartner">I’m a Delivery Partner</div>
+                <div class="role-sub" data-i18n="iamDeliveryPartnerSub">Pick up fresh harvest from farms & deliver to doorsteps</div>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3B: Customer Profile Setup Form (Screen 3 -> Screen 11 Flow) -->
+      <div id="welcome-customer-setup-view" style="display:none; flex-direction:column; width:100%; height:100%;">
+        <div class="screen-header">
+          <button class="icon-btn" onclick="showWelcomeRoles()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <span class="header-title" data-i18n="customerSetupTitle">Customer Profile Setup</span>
+          <div style="width:24px;"></div>
+        </div>
+
+        <div class="screen-scrollable">
+          <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+          
+          <h2 data-i18n="customerSetupTitle">Customer Profile Setup</h2>
+          <p style="margin-top:4px; margin-bottom:12px;" data-i18n="customerSetupSub">Enter your delivery details to browse and order fresh farm produce directly.</p>
+
+          <div class="card">
+            <!-- 1. Full Name (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="fullNameLabel">Full Name (Required)</label>
+              <input type="text" id="cust-setup-name" class="form-input" placeholder="e.g. Priya Sharma" required>
+            </div>
+
+            <!-- 2. Mobile Number with +91 (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="mobileInputLabel">Mobile Number (Required)</label>
+              <div style="display:flex; gap:8px;">
+                <div style="padding:10px 12px; background:#f0f4f0; border:1.5px solid var(--border-color); border-radius:var(--radius-md); font-weight:700; font-size:13.5px;">+91</div>
+                <input type="tel" id="cust-setup-phone" class="form-input" placeholder="e.g. 9123456789" maxlength="10" required>
+              </div>
+            </div>
+
+            <!-- 3. Delivery Address / House Number (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="deliveryAddressHouse">Delivery Address / House No. (Required)</label>
+              <input type="text" id="cust-setup-address" class="form-input" placeholder="e.g. Flat 402, Green Acres, Road No. 12" required>
+            </div>
+
+            <!-- 4. Village / Town / Area (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="areaTownLabel">Village / Town / Area (Required)</label>
+              <input type="text" id="cust-setup-area" class="form-input" placeholder="e.g. Madhapur" required>
+            </div>
+
+            <!-- 5. District (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="districtLabel">District (Required)</label>
+              <input type="text" id="cust-setup-district" class="form-input" placeholder="e.g. Hyderabad" required>
+            </div>
+
+            <!-- 6. State (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="stateLabel">State (Required)</label>
+              <select id="cust-setup-state" class="form-select" required>
+                <option value="" selected data-i18n="selectState">Select State</option>
+                <option value="Telangana" data-i18n="stateTelangana">Telangana</option>
+                <option value="Andhra Pradesh" data-i18n="stateAP">Andhra Pradesh</option>
+                <option value="Karnataka" data-i18n="stateKarnataka">Karnataka</option>
+                <option value="Tamil Nadu" data-i18n="stateTN">Tamil Nadu</option>
+                <option value="Kerala" data-i18n="stateKerala">Kerala</option>
+              </select>
+            </div>
+
+            <!-- 7. PIN Code (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="pincodeLabel">PIN Code (Required)</label>
+              <input type="text" id="cust-setup-pincode" class="form-input" placeholder="e.g. 500081" maxlength="6" required>
+            </div>
+
+            <!-- Validation Error Alert -->
+            <div id="cust-setup-error" style="color:var(--danger); font-size:12px; font-weight:600; display:none; margin-bottom:10px;"></div>
+
+            <!-- Save & Continue Button -> Opens Screen 11 -->
+            <button class="btn btn-primary" onclick="saveCustomerRegistration()">
+              <span data-i18n="saveAndContinue">Save & Continue</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 4 — FARMER LOGIN / SIGN UP
+         (Multi-Step: 4A Mobile -> 4B OTP -> 4C Profile Setup -> Screen 5)
+         ========================================== -->
+    <section id="screen-4" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" id="farmer-reg-back-btn" onclick="navigateTo(3)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="farmerRegTitle">Farmer Registration</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+
+        <!-- STEP 4A: Mobile Number Input & Send Code -->
+        <div id="farmer-step-mobile" class="farmer-reg-step-view active-step">
+          <div class="form-step-indicator">
+            <span data-i18n="step1Of3">Step 1 of 3</span>
+            <span data-i18n="mobileVerification">Mobile Verification</span>
+          </div>
+
+          <h2 data-i18n="mobileStepHeader">Enter Mobile Number</h2>
+          <p style="margin-top:4px; margin-bottom:14px;" data-i18n="mobileStepSub">Enter your 10-digit mobile number to get started.</p>
+
+          <div class="card">
+            <div class="form-group">
+              <label class="form-label" data-i18n="mobileInputLabel">Mobile Number</label>
+              <div style="display:flex; gap:8px;">
+                <div style="padding:10px 12px; background:#f0f4f0; border:1.5px solid var(--border-color); border-radius:var(--radius-md); font-weight:700; font-size:13.5px;">+91</div>
+                <input type="tel" id="farmer-reg-phone" class="form-input" placeholder="e.g. 9876543210" maxlength="10">
+              </div>
+            </div>
+
+            <!-- Error message if empty or invalid -->
+            <div id="farmer-phone-error" style="color:var(--danger); font-size:12px; font-weight:600; display:none; margin-bottom:10px;" data-i18n="errValidPhone">Please enter a valid 10-digit mobile number.</div>
+
+            <button class="btn btn-primary" onclick="farmerSendCode()">
+              <span data-i18n="sendCodeBtn">Send Code</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4B: Simulated OTP Verification -->
+        <div id="farmer-step-otp" class="farmer-reg-step-view">
+          <div class="form-step-indicator">
+            <span data-i18n="step2Of3">Step 2 of 3</span>
+            <span data-i18n="verifyPhone">Verify Phone</span>
+          </div>
+
+          <h2 data-i18n="otpStepHeader">Verify Phone Number</h2>
+          <p style="margin-top:4px;" data-i18n="otpStepSub">Enter the 4-digit code sent to your mobile.</p>
+
+          <!-- Prototype Simulation Banner -->
+          <div style="background:#fff9e6; border:1px solid #ffe082; border-radius:8px; padding:10px; margin:12px 0; font-size:12px; color:#795548;" data-i18n="otpSimulationNotice">
+            Prototype Demo Simulation: Demo OTP is 1234. No SMS sent.
+          </div>
+
+          <div class="card">
+            <div class="otp-inputs">
+              <input type="text" id="otp-1" class="otp-box" maxlength="1" oninput="if(this.value)document.getElementById('otp-2').focus()">
+              <input type="text" id="otp-2" class="otp-box" maxlength="1" oninput="if(this.value)document.getElementById('otp-3').focus()">
+              <input type="text" id="otp-3" class="otp-box" maxlength="1" oninput="if(this.value)document.getElementById('otp-4').focus()">
+              <input type="text" id="otp-4" class="otp-box" maxlength="1">
+            </div>
+
+            <div id="farmer-otp-error" style="color:var(--danger); font-size:12px; font-weight:600; display:none; margin-bottom:10px; text-align:center;" data-i18n="errInvalidOtp">
+              Invalid verification code. Please enter demo code 1234.
+            </div>
+
+            <button class="btn btn-primary" onclick="farmerVerifyOtp()" style="margin-bottom:8px;">
+              <span data-i18n="verifyBtn">Verify & Continue</span>
+            </button>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <button class="btn btn-secondary btn-sm" onclick="farmerAutoFillOtp()" data-i18n="autoFillDemoOtp">Auto-fill Demo Code (1234)</button>
+              <button class="btn btn-outline btn-sm" onclick="farmerResendOtp()" data-i18n="resendCode">Resend Code</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4C: Farmer Profile Setup (Strict Form: Full Name, Farm Name, Village, District, State, Crops, Location) -->
+        <div id="farmer-step-details" class="farmer-reg-step-view">
+          <div class="form-step-indicator">
+            <span data-i18n="step3Of3">Step 3 of 3</span>
+            <span data-i18n="profileSetupTitle">Farmer Profile Setup</span>
+          </div>
+
+          <h2 data-i18n="profileSetupTitle">Farmer Profile Setup</h2>
+          <p style="margin-top:4px; margin-bottom:12px;" data-i18n="profileSetupSub">Tell us about your farm so local customers can discover your fresh produce.</p>
+
+          <div class="card">
+            <!-- 1. Full Name (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="fullNameLabel">Full Name (Required)</label>
+              <input type="text" id="setup-farmer-name" class="form-input" placeholder="e.g. Ravi Kumar" required>
+            </div>
+
+            <!-- 2. Farm Name (Optional) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="farmNameLabel">Farm Name (Optional)</label>
+              <input type="text" id="setup-farm-name" class="form-input" placeholder="e.g. Green Valley Farm">
+            </div>
+
+            <!-- 3. Village / Town (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="villageLabel">Village / Town (Required)</label>
+              <input type="text" id="setup-farmer-village" class="form-input" placeholder="e.g. Tenali" required>
+            </div>
+
+            <!-- 4. District (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="districtLabel">District (Required)</label>
+              <input type="text" id="setup-farmer-district" class="form-input" placeholder="e.g. Guntur" required>
+            </div>
+
+            <!-- 5. State (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="stateLabel">State (Required)</label>
+              <select id="setup-farmer-state" class="form-select" required>
+                <option value="" selected data-i18n="selectState">Select State</option>
+                <option value="Andhra Pradesh" data-i18n="stateAP">Andhra Pradesh</option>
+                <option value="Telangana" data-i18n="stateTelangana">Telangana</option>
+                <option value="Karnataka" data-i18n="stateKarnataka">Karnataka</option>
+                <option value="Tamil Nadu" data-i18n="stateTN">Tamil Nadu</option>
+                <option value="Kerala" data-i18n="stateKerala">Kerala</option>
+              </select>
+            </div>
+
+            <!-- 6. Farming Type / Crops Grown (Required) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="cropsLabel">Farming Type / Crops Grown (Required)</label>
+              <input type="text" id="setup-farmer-crops" class="form-input" placeholder="e.g. Tomatoes, Chillies, Organic Greens" required>
+            </div>
+
+            <!-- 7. Farm Location / Acreage (Optional) -->
+            <div class="form-group">
+              <label class="form-label" data-i18n="farmLocationLabel">Farm Location / Acreage (Optional)</label>
+              <input type="text" id="setup-farm-location" class="form-input" placeholder="e.g. 4.5 Acres near Main Canal">
+            </div>
+
+            <!-- Validation Error Alert -->
+            <div id="setup-farmer-error" style="color:var(--danger); font-size:12px; font-weight:600; display:none; margin-bottom:10px;" data-i18n="errFillRequired">
+              Please fill in all required fields (Full Name, Village, District, State, and Crops Grown).
+            </div>
+
+            <!-- Save & Continue Button -> Opens Screen 5 -->
+            <button class="btn btn-primary" onclick="saveFarmerProfileSetup()">
+              <span data-i18n="saveAndContinue">Save & Continue</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 5 — FARMER DASHBOARD
+         (Displays entered farmer name dynamically)
+         ========================================== -->
+    <section id="screen-5" class="screen">
+      <div class="screen-header">
+        <div class="header-left">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="farmer-dashboard-location" style="font-size:12px; font-weight:600; color:var(--text-muted);">Guntur, Andhra Pradesh</span>
+        </div>
+        <button class="icon-btn" onclick="alert(t('noNewNotifications'))" style="border:1px solid var(--border-color); background:#fff;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+      </div>
+
+      <div class="screen-scrollable">
+        <!-- Personalized Greeting Using Entered Name -->
+        <h2 id="farmer-greeting-dashboard" style="font-size:19px; color:var(--primary-dark); margin-bottom:10px;">Welcome, Mahendra!</h2>
+
+        <!-- Mandi Market Rate & Weather Banner -->
+        <div class="dashboard-banner">
+          <div class="banner-greeting" data-i18n="mandiRates">Mandi Market Rate Today</div>
+          <div class="banner-sub" data-i18n="mandiRatesSub">Tomato: ₹20-22/kg • Spinach: ₹15/bunch • Clear harvest weather (31°C)</div>
+        </div>
+
+        <!-- Prominent Speak to Add Produce Button -> Screen 7 -->
+        <button class="hero-action-btn" onclick="navigateTo(7)">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="mic-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+            </div>
+            <div style="text-align:left;">
+              <div style="font-size:14.5px; color:var(--primary-dark);" data-i18n="speakToAddProduce">Speak to Add Produce</div>
+              <div style="font-size:11.5px; color:var(--text-muted); font-weight:normal;" data-i18n="speakToAddSub">Say crop, weight and your price</div>
+            </div>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-dark)" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+        <!-- Shortcuts Grid -->
+        <h3 style="font-size:14.5px; margin-bottom:8px;" data-i18n="shortcutsTitle">Shortcuts</h3>
+        <div class="shortcuts-grid">
+          <div class="shortcut-card" onclick="navigateTo(9)">
+            <div class="shortcut-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <div class="shortcut-label" data-i18n="myProducts">My Products</div>
+            <div class="shortcut-meta" data-i18n="manageListings">Manage listings</div>
+          </div>
+
+          <div class="shortcut-card" onclick="navigateTo(10)">
+            <div class="shortcut-icon" style="background:#e3f2fd; color:#1976d2;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="shortcut-label" data-i18n="myOrders">My Orders</div>
+            <div class="shortcut-meta" data-i18n="incomingOrder">1 Incoming Order</div>
+          </div>
+
+          <div class="shortcut-card" onclick="navigateTo(6)">
+            <div class="shortcut-icon" style="background:#fff3e0; color:#e65100;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <div class="shortcut-label" data-i18n="addByPhoto">Add by Photo</div>
+            <div class="shortcut-meta" data-i18n="snapCropPic">Snap crop picture</div>
+          </div>
+
+          <div class="shortcut-card" onclick="alert(t('monthlyEarningsAlert'))">
+            <div class="shortcut-icon" style="background:#ede7f6; color:#512da8;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="shortcut-label" data-i18n="earnings">Earnings</div>
+            <div class="shortcut-meta" data-i18n="earningsMonth">₹42,500 this month</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation (Farmer) -->
+      <nav class="bottom-nav farmer-nav">
+        <button class="nav-item active" onclick="navigateTo(5)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(9)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navProducts">Products</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(10)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="nav-badge">1</span>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(19)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 6 — ADD PRODUCT BY PHOTO
+         ========================================== -->
+    <section id="screen-6" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(5)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="addByPhoto">Add Product by Photo</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+
+        <div class="photo-upload-zone" onclick="simulatePhotoUpload('camera')">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="margin-bottom:4px;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div style="font-weight:700; color:var(--primary-dark); font-size:14px;" data-i18n="takePhotoOrGallery">Take Photo or Choose from Gallery</div>
+          <p style="font-size:11.5px; margin-top:2px;" data-i18n="clickToSimulatePhoto">Click to simulate camera capture of harvest</p>
+        </div>
+
+        <div id="photo-preview-box" class="image-preview-container" style="background-image: url('https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=500&auto=format&fit=crop&q=80');">
+          <span id="ai-photo-badge" class="ai-tag-pill" data-i18n="aiDetectedTomato">Detected: Fresh Tomatoes (98% confidence)</span>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label" data-i18n="produceName">Produce Name</label>
+            <input type="text" id="photo-prod-name" class="form-input" value="Fresh Country Tomatoes">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="categories">Category</label>
+            <select class="form-select">
+              <option data-i18n="catVeg">Vegetables</option>
+              <option data-i18n="catLeafy">Leafy Greens</option>
+              <option data-i18n="catFruits">Fruits</option>
+              <option data-i18n="catGrains">Grains</option>
+            </select>
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <div class="form-group" style="flex:1;">
+              <label class="form-label" data-i18n="quantityKg">Quantity (kg)</label>
+              <input type="number" id="photo-prod-qty" class="form-input" value="50">
+            </div>
+            <div class="form-group" style="flex:1;">
+              <label class="form-label" data-i18n="pricePerKg">Price per kg (₹)</label>
+              <input type="number" id="photo-prod-price" class="form-input" value="20">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="previewPhotoListing()">
+            <span data-i18n="previewListing">Preview Listing</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 7 — VOICE ADD PRODUCT
+         ========================================== -->
+    <section id="screen-7" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(5)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="voiceAddTitle">Voice Add Product</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+
+        <div class="voice-hero-box">
+          <h2 style="font-size:17px;" data-i18n="tapAndSpeak">Tap & Speak</h2>
+          <p style="margin-top:3px;" data-i18n="speakToAddSub">Say crop, weight and your price</p>
+
+          <div class="voice-instruction-box">
+            <div style="font-size:11.5px; font-weight:700; color:var(--primary-dark); margin-bottom:3px;" data-i18n="voiceExampleHint">Say for example:</div>
+            <div style="font-size:13.5px; color:#1b5e20; font-weight:600; line-height:1.4;" data-i18n="voiceExampleText">
+              “నా దగ్గర 50 కిలోల టమాటాలు ఉన్నాయి. కిలో 20 రూపాయలు.”
+            </div>
+          </div>
+
+          <button class="mic-pulse-btn" onclick="simulateVoiceRecording()">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+          </button>
+          <div id="voice-status-text" style="font-size:12.5px; font-weight:600; color:var(--primary);" data-i18n="tapToSpeak">Tap microphone to speak</div>
+        </div>
+
+        <div id="voice-result-box" class="parsed-result-card" style="display:block;">
+          <div style="font-size:11.5px; font-weight:700; color:var(--primary); text-transform:uppercase; margin-bottom:6px;" data-i18n="parsedListing">Parsed Listing Details:</div>
+          <div class="parsed-row">
+            <span class="parsed-label" data-i18n="produceLabel">Produce:</span>
+            <span class="parsed-value" id="parsed-crop-name">Tomatoes</span>
+          </div>
+          <div class="parsed-row">
+            <span class="parsed-label" data-i18n="quantityLabel">Quantity:</span>
+            <span class="parsed-value" id="parsed-crop-qty">50 kg</span>
+          </div>
+          <div class="parsed-row">
+            <span class="parsed-label" data-i18n="priceLabel">Price:</span>
+            <span class="parsed-value" id="parsed-crop-price">₹20 / kg</span>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:12px;">
+            <button class="btn btn-primary" style="flex:2;" onclick="confirmVoiceListing()">
+              <span data-i18n="confirmListing">Confirm Listing</span>
+            </button>
+            <button class="btn btn-secondary" style="flex:1;" onclick="navigateTo(6)">
+              <span data-i18n="editDetails">Edit Details</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 8 — PRODUCT PREVIEW / PUBLISH
+         ========================================== -->
+    <section id="screen-8" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(7)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="productPreviewPublish">Product Preview / Publish</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="preview-card-hero">
+          <img id="preview-image" src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=500&auto=format&fit=crop&q=80" alt="Preview" class="preview-photo">
+          <div style="padding:14px;">
+            <div class="sim-badge" data-i18n="simBadge">Direct Farm Harvest</div>
+            <h2 id="preview-title" style="font-size:17px; margin-bottom:3px;">Fresh Country Tomatoes</h2>
+            <div id="preview-price" style="font-size:20px; font-weight:800; color:var(--primary-dark); margin-bottom:6px;">₹20 / kg</div>
+            
+            <div style="border-top:1px solid var(--border-color); padding-top:8px; margin-top:8px; font-size:12.5px; color:var(--text-muted);">
+              <div><strong data-i18n="stockLabel">Stock:</strong> <span id="preview-qty">50 kg Available</span></div>
+              <div style="margin-top:3px;"><strong data-i18n="farmerLabel">Farmer:</strong> <span id="preview-farmer">Mahendra • Guntur, AP</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button class="btn btn-primary" onclick="publishPendingProduct()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="publishToMarketplace">Publish to Marketplace</span>
+          </button>
+          <button class="btn btn-outline" onclick="navigateTo(6)">
+            <span data-i18n="editDetails">Edit Details</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 9 — MY PRODUCTS
+         ========================================== -->
+    <section id="screen-9" class="screen">
+      <div class="screen-header">
+        <span class="header-title" data-i18n="myProducts">My Products</span>
+        <button class="btn btn-fresh btn-sm" onclick="navigateTo(6)" data-i18n="addBtn">+ Add</button>
+      </div>
+
+      <div class="screen-scrollable">
+        <div id="my-products-list"></div>
+      </div>
+
+      <!-- Bottom Navigation (Farmer) -->
+      <nav class="bottom-nav farmer-nav">
+        <button class="nav-item" onclick="navigateTo(5)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo(9)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navProducts">Products</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(10)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="nav-badge">1</span>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(19)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 10 — FARMER ORDERS
+         ========================================== -->
+    <section id="screen-10" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(5)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="myOrders">Farmer Orders</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div id="farmer-orders-list"></div>
+      </div>
+
+      <!-- Bottom Navigation (Farmer) -->
+      <nav class="bottom-nav farmer-nav">
+        <button class="nav-item" onclick="navigateTo(5)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(9)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navProducts">Products</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo(10)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="nav-badge">1</span>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(19)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 11 — CUSTOMER HOME
+         ========================================== -->
+    <section id="screen-11" class="screen">
+      <div class="screen-header">
+        <div style="cursor:pointer;" onclick="alert(t('deliveringTo') + ': ' + (state.customer.address || t('selectDeliveryArea')))">
+          <div style="font-size:10.5px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;" data-i18n="deliveringTo">Delivering To</div>
+          <div style="font-size:13.5px; font-weight:700; color:var(--primary-dark); display:flex; align-items:center; gap:4px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span id="customer-header-location" data-i18n="selectDeliveryArea">Select Delivery Area</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <button class="icon-btn" onclick="alert(t('noUnreadNotifications'))" style="border:1px solid var(--border-color); background:#fff;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+      </div>
+
+      <div class="screen-scrollable">
+        <h2 id="customer-greeting-home" style="font-size:19px; color:var(--primary-dark); margin-bottom:10px;">Welcome!</h2>
+
+        <!-- Search Bar with Voice Action -->
+        <div style="position:relative; margin-bottom:14px;">
+          <input type="text" class="form-input" placeholder="Search farm fresh produce..." data-i18n-placeholder="searchPlaceholder" style="padding-left:36px; padding-right:42px;" onfocus="navigateTo(13)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2" style="position:absolute; left:12px; top:14px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <button class="voice-search-icon-btn" onclick="navigateTo(12)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+          </button>
+        </div>
+
+        <!-- Banner -->
+        <div class="dashboard-banner" style="background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%);">
+          <div style="font-size:10.5px; background:rgba(255,255,255,0.2); display:inline-block; padding:2px 7px; border-radius:10px; margin-bottom:4px;" data-i18n="directFarmRates">Direct Farm Rates</div>
+          <div class="banner-greeting" data-i18n="freshToday">Harvested Fresh This Morning</div>
+          <div class="banner-sub" data-i18n="tagline">Connecting Farms. Delivering Freshness.</div>
+        </div>
+
+        <!-- Category Chips -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:14.5px;" data-i18n="categories">Categories</h3>
+          <span style="font-size:11.5px; color:var(--primary); font-weight:600; cursor:pointer;" onclick="navigateTo(13)" data-i18n="catAll">View All</span>
+        </div>
+        <div class="filter-scroll-row" id="cat-chips">
+          <div class="filter-chip active" onclick="filterCategory('all', this)" data-i18n="catAll">All</div>
+          <div class="filter-chip" onclick="filterCategory('vegetables', this)" data-i18n="catVeg">Vegetables</div>
+          <div class="filter-chip" onclick="filterCategory('leafy', this)" data-i18n="catLeafy">Leafy Greens</div>
+          <div class="filter-chip" onclick="filterCategory('fruits', this)" data-i18n="catFruits">Fruits</div>
+          <div class="filter-chip" onclick="filterCategory('grains', this)" data-i18n="catGrains">Grains</div>
+        </div>
+
+        <!-- Fresh Today Produce Grid -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin:12px 0 8px;">
+          <h3 style="font-size:14.5px;" data-i18n="freshToday">Fresh Today</h3>
+          <span style="font-size:11.5px; color:var(--text-muted);" data-i18n="directFarmRates">Direct Farm Rates</span>
+        </div>
+        <div class="product-grid" id="fresh-today-grid"></div>
+      </div>
+
+      <!-- Bottom Navigation (Customer) -->
+      <nav class="bottom-nav customer-nav">
+        <button class="nav-item active" onclick="navigateTo(11)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(13)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navCategories">Categories</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(15)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge cart-badge-count">1</span>
+          <span data-i18n="navCart">Cart</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(18)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(20)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 12 — VOICE SEARCH
+         ========================================== -->
+    <section id="screen-12" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(11)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="voiceSearchTitle">Voice Search</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+
+        <div class="voice-hero-box">
+          <h2 style="font-size:17px;" data-i18n="voiceSearchProduce">Voice Search Produce</h2>
+          <p style="margin-top:3px;" data-i18n="voiceSearchSub">Say the name of any vegetable, leafy green, or fruit.</p>
+
+          <!-- Clean sample search chips without mixed brackets -->
+          <div style="margin:14px 0;">
+            <div style="font-size:11.5px; font-weight:600; color:var(--text-muted); margin-bottom:6px;" data-i18n="trySaying">Try saying one of these:</div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+              <span class="filter-chip" onclick="simulateVoiceSearch('Spinach')" data-i18n="chipSpinach">Spinach</span>
+              <span class="filter-chip" onclick="simulateVoiceSearch('Amaranth')" data-i18n="chipAmaranth">Amaranth</span>
+              <span class="filter-chip" onclick="simulateVoiceSearch('Coriander')" data-i18n="chipCoriander">Coriander</span>
+              <span class="filter-chip" onclick="simulateVoiceSearch('Tomato')" data-i18n="chipTomato">Tomato</span>
+            </div>
+          </div>
+
+          <button class="mic-pulse-btn" onclick="simulateVoiceSearch('Spinach')">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+          </button>
+          <div style="font-size:12px; font-weight:600; color:var(--primary);" data-i18n="listeningSpeakProduce">Listening... Speak produce name</div>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label" data-i18n="recognizedSearchQuery">Recognized Produce Search Query</label>
+            <input type="text" id="voice-search-result-display" class="form-input" value="Spinach">
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-primary" onclick="state.activeFilter='Spinach'; navigateTo(13)" data-i18n="searchBtn">
+              Search
+            </button>
+            <button class="btn btn-secondary" onclick="navigateTo(11)" data-i18n="cancelBtn">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 13 — PRODUCT LISTING / SEARCH
+         ========================================== -->
+    <section id="screen-13" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(11)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="productListingTitle">Product Listing / Search</span>
+        <div id="listing-count" style="font-size:11.5px; color:var(--text-muted);">5 items</div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="filter-scroll-row">
+          <div class="filter-chip active" onclick="state.activeFilter='all'; renderProductListing();" data-i18n="catAll">All</div>
+          <div class="filter-chip" onclick="alert(t('filteredNearby'))" data-i18n="nearbyFilter">Nearby (&lt; 25 km)</div>
+          <div class="filter-chip" onclick="alert(t('filteredPriceLow'))" data-i18n="priceLowHigh">Price: Low to High</div>
+          <div class="filter-chip" onclick="alert(t('filteredInStock'))" data-i18n="availableNow">Available Now</div>
+        </div>
+
+        <div class="product-grid" id="search-products-grid" style="margin-top:8px;"></div>
+      </div>
+
+      <!-- Bottom Navigation (Customer) -->
+      <nav class="bottom-nav customer-nav">
+        <button class="nav-item" onclick="navigateTo(11)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo(13)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navCategories">Categories</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(15)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge cart-badge-count">1</span>
+          <span data-i18n="navCart">Cart</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(18)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(20)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 14 — PRODUCT DETAILS
+         ========================================== -->
+    <section id="screen-14" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(13)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="productDetailsTitle">Product Details</span>
+        <button class="icon-btn" onclick="navigateTo(15)">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </button>
+      </div>
+
+      <div class="screen-scrollable">
+        <img id="detail-img" src="" alt="Produce" class="detail-hero-img">
+
+        <div class="card">
+          <div class="sim-badge" data-i18n="simBadge">Direct From Farmer</div>
+          <h2 id="detail-title" style="font-size:18px; margin-bottom:4px;">Product Title</h2>
+          <div id="detail-price" style="font-size:22px; font-weight:800; color:var(--primary-dark); margin-bottom:6px;">₹0 / kg</div>
+          <p id="detail-farmer-info" style="font-size:12.5px; color:var(--text-main); margin-bottom:4px;"></p>
+          <p id="detail-stock" style="font-size:11.5px; color:var(--primary); font-weight:600;"></p>
+          <p id="detail-desc" style="font-size:12px; color:var(--text-muted); line-height:1.45; margin-top:6px;"></p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1.5px solid var(--border-color); padding-top:12px; margin-top:12px;">
+            <div>
+              <div style="font-weight:700; font-size:13.5px;" data-i18n="quantityUnitLabel">Quantity (kg/bunch):</div>
+              <div style="font-size:11px; color:var(--text-muted);" data-i18n="adjustQuantity">Adjust quantity</div>
+            </div>
+            <div class="stepper-control">
+              <button class="stepper-btn" onclick="changeDetailQty(-1)">-</button>
+              <span id="detail-qty-display" class="stepper-val">1</span>
+              <button class="stepper-btn" onclick="changeDetailQty(1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:4px;">
+          <button class="btn btn-secondary" style="flex:1;" onclick="addToCartFromDetail()">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span data-i18n="addToCart">Add to Cart</span>
+          </button>
+          <button class="btn btn-primary" style="flex:1;" onclick="buyNowFromDetail()">
+            <span data-i18n="buyNow">Buy Now</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 15 — SHOPPING CART
+         ========================================== -->
+    <section id="screen-15" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(11)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="navCart">Shopping Cart</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div id="cart-items-container"></div>
+
+        <div class="card" style="margin-top:10px;">
+          <div class="card-title" data-i18n="billBreakdown">Bill Breakdown</div>
+          <div class="bill-row">
+            <span data-i18n="itemsSubtotal">Items Subtotal</span>
+            <span id="cart-subtotal">₹0</span>
+          </div>
+          <div class="bill-row">
+            <span data-i18n="deliveryFee">Delivery Fee</span>
+            <span id="cart-delivery-fee">₹30</span>
+          </div>
+          <div class="bill-row total">
+            <span data-i18n="totalToPay">Total to Pay</span>
+            <span id="cart-total">₹0</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="navigateTo(16)" style="margin-top:4px; margin-bottom:8px;">
+          <span data-i18n="proceedToCheckout">Proceed to Checkout</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Bottom Navigation (Customer) -->
+      <nav class="bottom-nav customer-nav">
+        <button class="nav-item" onclick="navigateTo(11)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(13)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navCategories">Categories</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo(15)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge cart-badge-count">1</span>
+          <span data-i18n="navCart">Cart</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(18)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(20)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 16 — CHECKOUT
+         ========================================== -->
+    <section id="screen-16" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(15)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="checkoutTitle">Checkout</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+
+        <!-- Confirm Delivery Location Card -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div class="card-title" style="margin-bottom:0;" data-i18n="confirmDeliveryLocation">Confirm Delivery Location</div>
+            <button class="btn btn-outline btn-sm" style="font-size:11px; padding:3px 8px;" onclick="toggleCheckoutAddressEdit()" data-i18n="editAddress">Edit Address</button>
+          </div>
+          
+          <p id="checkout-address-display" style="font-size:13px; color:var(--text-main); font-weight:600; line-height:1.4; background:#f9fbf9; padding:8px 10px; border-radius:6px; border:1px solid var(--border-color); margin-bottom:6px;">
+            <!-- Populated dynamically from state.customer.address -->
+          </p>
+
+          <!-- Inline Edit Address Drawer -->
+          <div id="checkout-address-edit-box" style="display:none; margin-top:8px; padding-top:8px; border-top:1px dashed var(--border-color);">
+            <div class="form-group" style="margin-bottom:8px;">
+              <label class="form-label" style="font-size:11.5px;" data-i18n="deliveryAddress">Update Delivery Address</label>
+              <textarea id="checkout-edit-address-input" class="form-textarea" rows="2" style="font-size:12.5px;"></textarea>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="saveCheckoutAddressEdit()" data-i18n="saveAddress">Update Address</button>
+          </div>
+
+          <!-- Location Confirmation Checkbox -->
+          <label style="display:flex; align-items:flex-start; gap:8px; margin-top:10px; font-size:12px; cursor:pointer;">
+            <input type="checkbox" id="checkout-confirm-addr-chk" checked style="accent-color:var(--primary); margin-top:2px;">
+            <span data-i18n="confirmDeliveryLocationMsg">I confirm this delivery address is accurate</span>
+          </label>
+
+          <!-- Optional Delivery Instructions -->
+          <div class="form-group" style="margin-top:10px; margin-bottom:0;">
+            <label class="form-label" style="font-size:11.5px;" data-i18n="deliveryInstructions">Delivery Instructions (Optional)</label>
+            <input type="text" id="checkout-instructions-input" class="form-input" placeholder="e.g. Ring bell twice / Leave at gate" data-i18n-placeholder="deliveryNotesPlaceholder" style="font-size:12px; padding:7px 10px;">
+          </div>
+
+          <!-- Validation Error Alert -->
+          <div id="checkout-addr-error" style="color:var(--danger); font-size:12px; font-weight:600; display:none; margin-top:8px;"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title" data-i18n="orderItems">Order Items</div>
+          <div id="checkout-summary-list"></div>
+          <div class="bill-row total" style="margin-top:8px;">
+            <span data-i18n="grandTotal">Grand Total</span>
+            <span id="checkout-total-val">₹70</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title" data-i18n="paymentMethod">Payment Method (Demo)</div>
+          <label style="display:flex; align-items:center; gap:8px; margin-bottom:10px; cursor:pointer;">
+            <input type="radio" name="paymethod" checked style="accent-color:var(--primary);">
+            <div>
+              <div style="font-weight:700; font-size:13.5px;" data-i18n="cashOnDelivery">Cash on Delivery</div>
+              <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="codSub">Pay cash when produce is delivered</div>
+            </div>
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <input type="radio" name="paymethod" style="accent-color:var(--primary);">
+            <div>
+              <div style="font-weight:700; font-size:13.5px;" data-i18n="upiDemo">UPI / QR (Demo Simulation)</div>
+              <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="upiSub">Google Pay, PhonePe, Paytm</div>
+            </div>
+          </label>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:10px;">
+          <button class="btn btn-primary" onclick="placeDemoOrder()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="placeOrder">Place Order</span>
+          </button>
+          <button class="btn btn-outline" onclick="navigateTo(15)">
+            <span data-i18n="back">Back to Cart</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 17 — ORDER CONFIRMATION
+         ========================================== -->
+    <section id="screen-17" class="screen">
+      <div class="screen-scrollable" style="justify-content:center; align-items:center; text-align:center;">
+        <div style="width:76px; height:76px; border-radius:50%; background:var(--primary-light); display:flex; align-items:center; justify-content:center; margin-bottom:14px; border:2.5px solid var(--primary);">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+
+        <h1 style="font-size:22px; color:var(--primary-dark); margin-bottom:4px;" data-i18n="orderConfirmed">Order Placed Successfully!</h1>
+        <p style="font-size:13px; margin-bottom:16px;" data-i18n="orderConfirmedSub">The local farmer has received your harvest request.</p>
+
+        <div class="card" style="width:100%; text-align:left; margin-bottom:18px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span style="color:var(--text-muted); font-size:12.5px;" data-i18n="orderIdLabel">Order ID:</span>
+            <strong id="confirmation-order-id" style="color:var(--primary-dark); font-size:13.5px;">#RD1001</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span style="color:var(--text-muted); font-size:12.5px;" data-i18n="estDeliveryLabel">Estimated Delivery:</span>
+            <strong style="color:var(--text-main); font-size:12.5px;" data-i18n="estDeliveryVal">Today within 3 hours</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--text-muted); font-size:12.5px;" data-i18n="paymentLabel">Payment:</span>
+            <strong style="color:var(--text-main); font-size:12.5px;" data-i18n="cashOnDelivery">Cash on Delivery</strong>
+          </div>
+        </div>
+
+        <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+          <button class="btn btn-primary" onclick="navigateTo(18)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="trackOrder">Track Order</span>
+          </button>
+          <button class="btn btn-secondary" onclick="navigateTo(11)">
+            <span data-i18n="continueShopping">Continue Shopping</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 18 — TRACK ORDER
+         ========================================== -->
+    <section id="screen-18" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(11)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="trackOrder">Track Order</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="sim-badge" data-i18n="simBadge">Simulation Prototype</div>
+
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span class="card-title" style="margin-bottom:0;" data-i18n="orderStatusTitle">Order Status</span>
+            <span id="track-order-id" style="font-weight:700; color:var(--primary-dark);">#RD1001</span>
+          </div>
+          <div id="track-order-details" style="font-size:12.5px; line-height:1.45;"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title" style="margin-bottom:12px;" data-i18n="deliveryProgress">Delivery Progress</div>
+          <div class="timeline-container">
+            <div id="timeline-step-1" class="timeline-step completed">
+              <div class="step-circle">✓</div>
+              <div>
+                <div style="font-weight:700; font-size:13.5px; color:var(--primary-dark);" data-i18n="step1Placed">Order Placed</div>
+                <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="step1Sub">Customer placed direct farm order</div>
+              </div>
+            </div>
+
+            <div id="timeline-step-2" class="timeline-step active">
+              <div class="step-circle">2</div>
+              <div>
+                <div style="font-weight:700; font-size:13.5px; color:var(--primary-dark);" data-i18n="step2Accepted">Farmer Accepted</div>
+                <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="step2Sub">Farmer confirmed harvest availability</div>
+              </div>
+            </div>
+
+            <div id="timeline-step-3" class="timeline-step">
+              <div class="step-circle">3</div>
+              <div>
+                <div style="font-weight:700; font-size:13.5px; color:var(--text-main);" data-i18n="step3Preparing">Preparing & Packing</div>
+                <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="step3Sub">Fresh produce cleaned & boxed</div>
+              </div>
+            </div>
+
+            <div id="timeline-step-4" class="timeline-step">
+              <div class="step-circle">4</div>
+              <div>
+                <div style="font-weight:700; font-size:13.5px; color:var(--text-main);" data-i18n="step4Ready">Ready for Pickup</div>
+                <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="step4Sub">Awaiting local delivery rider</div>
+              </div>
+            </div>
+
+            <div id="timeline-step-5" class="timeline-step">
+              <div class="step-circle">5</div>
+              <div>
+                <div style="font-weight:700; font-size:13.5px; color:var(--text-main);" data-i18n="step5Out">Out for Delivery</div>
+                <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="step5Sub">Rider en route</div>
+              </div>
+            </div>
+
+            <div id="timeline-step-6" class="timeline-step">
+              <div class="step-circle">6</div>
+              <div>
+                <div style="font-weight:700; font-size:13.5px; color:var(--text-main);" data-i18n="step6Delivered">Delivered</div>
+                <div style="font-size:11.5px; color:var(--text-muted);" data-i18n="step6Sub">Fresh harvest at your doorstep</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary btn-sm" onclick="advanceSimulationStatus()" style="margin-bottom:8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <span data-i18n="advanceDeliveryStatus">Advance Delivery Status (Simulation Test)</span>
+        </button>
+      </div>
+
+      <!-- Bottom Navigation (Customer) -->
+      <nav class="bottom-nav customer-nav">
+        <button class="nav-item" onclick="navigateTo(11)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(13)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navCategories">Categories</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(15)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge cart-badge-count">1</span>
+          <span data-i18n="navCart">Cart</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo(18)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(20)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 19 — FARMER PROFILE
+         ========================================== -->
+    <section id="screen-19" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(5)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="farmerProfileTitle">Farmer Profile</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="width:64px; height:64px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 8px; border:2px solid var(--primary);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h2 id="farmer-greeting-profile" style="font-size:17px;">Welcome, Mahendra!</h2>
+          <div class="sim-badge" data-i18n="verifiedDirectFarmer">Verified Direct Farmer</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title" data-i18n="profileDetailsTitle">Profile Details</div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="fullNameLabel">Full Name</label>
+            <input type="text" id="farmer-name-input" class="form-input" value="Mahendra">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="mobileInputLabel">Phone Number</label>
+            <input type="text" id="farmer-phone-input" class="form-input" value="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="locationFarmDetails">Location / Farm Details</label>
+            <input type="text" id="farmer-location-input" class="form-input" value="Guntur, Andhra Pradesh (4.5 Acres)">
+          </div>
+        </div>
+
+        <!-- Bank Details Section -->
+        <div class="card" style="background:#fdfcf9; border-color:#e0d8c3;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title" style="margin-bottom:0;" data-i18n="bankAccountPayouts">Bank Account for Payouts</div>
+            <span style="font-size:10px; background:#fff3e0; color:#e65100; padding:2px 6px; border-radius:4px; font-weight:700;" data-i18n="upcomingFeature">Upcoming Feature</span>
+          </div>
+          <p style="font-size:11.5px; margin-top:5px;" data-i18n="demoBankAccount">Demo Bank Account: State Bank of India **** 4102</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px; margin-bottom:8px;">
+          <button class="btn btn-primary" onclick="saveFarmerProfile()">
+            <span data-i18n="saveChanges">Save Changes</span>
+          </button>
+          <button class="btn btn-secondary" onclick="navigateTo(11)">
+            <span data-i18n="switchToCustomer">Switch to Customer App</span>
+          </button>
+          <button class="btn btn-outline" onclick="navigateTo(22)">
+            <span data-i18n="switchToDelivery">Switch to Delivery Partner App</span>
+          </button>
+          <button class="btn btn-outline-danger" onclick="navigateTo(3)">
+            <span data-i18n="logout">Logout</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation (Farmer) -->
+      <nav class="bottom-nav farmer-nav">
+        <button class="nav-item" onclick="navigateTo(5)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(9)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navProducts">Products</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(10)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="nav-badge">1</span>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo(19)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 20 — CUSTOMER PROFILE
+         ========================================== -->
+    <section id="screen-20" class="screen">
+      <div class="screen-header">
+        <button class="icon-btn" onclick="navigateTo(11)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="customerProfileTitle">Customer Profile</span>
+        <div style="width:24px;"></div>
+      </div>
+
+      <div class="screen-scrollable">
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="width:64px; height:64px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 8px; border:2px solid var(--primary);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h2 id="customer-greeting-profile" style="font-size:17px;">Welcome!</h2>
+          <div class="sim-badge" data-i18n="verifiedCustomerBadge">AgriNex Verified Customer</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title" data-i18n="personalDetails">Personal Details</div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="fullNameLabel">Full Name</label>
+            <input type="text" id="cust-name-input" class="form-input" placeholder="e.g. Priya Sharma">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="mobileInputLabel">Phone Number</label>
+            <input type="text" id="cust-phone-input" class="form-input" placeholder="e.g. +91 91234 56789">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="deliveringTo">Delivery Address</label>
+            <textarea id="cust-address-input" class="form-textarea" rows="2" placeholder="e.g. Flat 402, Green Acres, Madhapur, Hyderabad"></textarea>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="saveCustomerProfile()" data-i18n="saveInfo">Save Information</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title" data-i18n="orderHistory">Order History</div>
+          <div id="cust-order-history"></div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px; margin-bottom:8px;">
+          <button class="btn btn-secondary" onclick="navigateTo(4)">
+            <span data-i18n="switchToFarmer">Switch to Farmer Portal</span>
+          </button>
+          <button class="btn btn-outline" onclick="navigateTo(22)">
+            <span data-i18n="switchToDelivery">Switch to Delivery Partner App</span>
+          </button>
+          <button class="btn btn-outline-danger" onclick="navigateTo(3)">
+            <span data-i18n="logout">Logout</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation (Customer) -->
+      <nav class="bottom-nav customer-nav">
+        <button class="nav-item" onclick="navigateTo(11)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="navHome">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(13)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span data-i18n="navCategories">Categories</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(15)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge cart-badge-count">1</span>
+          <span data-i18n="navCart">Cart</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo(18)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+          <span data-i18n="navOrders">Orders</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo(20)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="navProfile">Profile</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 21 — DELIVERY PARTNER ORDER NOTIFICATION
+         (Detailed Delivery Request Page)
+         ========================================== -->
+    <section id="screen-21" class="screen delivery-theme">
+      <div class="screen-header delivery-header">
+        <button class="icon-btn delivery-icon-btn" onclick="navigateTo(22)" title="Back to Delivery Partner Home">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="header-title" data-i18n="deliveryRequestTitle" style="color:#ffffff;">Delivery Request</span>
+        <div class="delivery-status-indicator">
+          <span class="pulse-dot"></span>
+          <span style="font-size:11px; font-weight:700; color:#22d3ee;" data-i18n="onlineStatus">Online</span>
+        </div>
+      </div>
+
+      <div class="screen-scrollable delivery-scrollable">
+        <div class="delivery-badge-pill" data-i18n="newDeliveryRequest">⚡ Urgent Harvest Delivery Request</div>
+
+        <!-- Order Summary Card -->
+        <div class="delivery-card pulse-glow" id="delivery-request-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:16px; font-weight:800; color:#22d3ee;" id="delivery-req-order-id">#RD1001</span>
+            <span class="notification-badge" style="background:#06b6d4; color:#0b1120;" data-i18n="pendingBadge">Pending</span>
+          </div>
+          <div style="font-size:12.5px; color:#cbd5e1; margin-bottom:4px;">
+            <strong data-i18n="itemLabel">Produce Items:</strong> <span id="delivery-req-items">Fresh Country Tomatoes (2 kg)</span>
+          </div>
+          <div style="font-size:12.5px; color:#cbd5e1;">
+            <strong data-i18n="orderTotal">Order Value:</strong> <span id="delivery-req-order-total">₹70 (COD)</span>
+          </div>
+        </div>
+
+        <!-- Route & Map Simulation Visual -->
+        <div class="delivery-card route-card">
+          <div class="card-title" style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+            <span data-i18n="deliveryRoute" style="font-size:13.5px; font-weight:700; color:#ffffff;">Delivery Route</span>
+            <span style="font-size:11px; color:#22d3ee; font-weight:700;" id="delivery-req-distance">4.2 km total (Est. 30 mins)</span>
+          </div>
+
+          <div class="route-timeline">
+            <div class="route-point pickup">
+              <div class="route-icon">👨‍🌾</div>
+              <div class="route-info">
+                <div class="route-label" data-i18n="pickupFarm">Pickup: Farm Location</div>
+                <div class="route-name" id="delivery-req-farm-name">Mahendra Organic Farms</div>
+                <div class="route-sub" id="delivery-req-farm-loc">Tenali, Guntur, Andhra Pradesh</div>
+                <div class="route-phone" id="delivery-req-farmer-phone">📞 +91 98765 43210</div>
+              </div>
+            </div>
+
+            <div class="route-line-dashed"></div>
+
+            <div class="route-point dropoff">
+              <div class="route-icon">🏠</div>
+              <div class="route-info">
+                <div class="route-label" data-i18n="deliveryDestination">Drop-off: Customer Address</div>
+                <div class="route-name" id="delivery-req-cust-name">Priya</div>
+                <div class="route-sub" id="delivery-req-cust-addr">Flat 402, Green Acres, Madhapur, Hyderabad</div>
+                <div class="route-phone" id="delivery-req-cust-phone">📞 +91 91234 56789</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package & Earnings Details Card -->
+        <div class="delivery-card">
+          <div class="card-title" data-i18n="packagePayoutDetails" style="font-size:13.5px; font-weight:700; color:#ffffff; margin-bottom:8px;">Package & Payout Details</div>
+          <div class="delivery-detail-row">
+            <span class="detail-label" data-i18n="orderIdLabel">Order ID:</span>
+            <span class="detail-val" id="delivery-req-detail-id">#RD1001</span>
+          </div>
+          <div class="delivery-detail-row">
+            <span class="detail-label" data-i18n="estDeliveryLabel">Est. Delivery Time:</span>
+            <span class="detail-val">30 - 45 mins</span>
+          </div>
+          <div class="delivery-detail-row">
+            <span class="detail-label" data-i18n="paymentLabel">Payment Mode:</span>
+            <span class="detail-val" data-i18n="cashOnDelivery">Cash on Delivery</span>
+          </div>
+          <div class="delivery-detail-row highlight-payout">
+            <span class="detail-label" style="font-weight:700;" data-i18n="partnerEarnings">Your Delivery Payout:</span>
+            <span class="detail-val payout-amount" id="delivery-req-payout">₹45.00</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="delivery-actions-col">
+          <button class="btn delivery-btn-accept" id="btn-accept-delivery" onclick="acceptDeliveryRequest()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="acceptDelivery">Accept Delivery</span>
+          </button>
+          <button class="btn delivery-btn-reject" id="btn-reject-delivery" onclick="rejectDeliveryRequest()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <span data-i18n="rejectDelivery">Reject Delivery</span>
+          </button>
+          <button class="btn btn-outline btn-sm" style="color:#94a3b8; border-color:#334155; margin-top:4px;" onclick="navigateTo(22)">
+            ← <span data-i18n="backToDeliveryHome">Back to Delivery Partner Home</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCREEN 22 — DELIVERY PARTNER HOME
+         (Delivery Partner Landing Page)
+         ========================================== -->
+    <section id="screen-22" class="screen delivery-theme">
+      <!-- Distinct Delivery Partner Header -->
+      <div class="screen-header delivery-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div class="delivery-brand-logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2.2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size:14px; font-weight:800; color:#ffffff; letter-spacing:-0.2px;">AgriNex Rider</div>
+            <div style="font-size:10px; color:#94a3b8; font-weight:600;" data-i18n="deliveryPartnerTitle">Delivery Partner Home</div>
+          </div>
+        </div>
+
+        <!-- Online / Offline Availability Toggle Switch -->
+        <div class="online-toggle-container" onclick="toggleDeliveryOnlineStatus()">
+          <span id="dp-online-label" class="online-toggle-text active" data-i18n="onlineStatus">Online</span>
+          <div id="dp-online-switch" class="online-toggle-switch active">
+            <div class="toggle-knob"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-scrollable delivery-scrollable">
+        <!-- Partner Profile Card -->
+        <div class="delivery-profile-card">
+          <div class="dp-avatar">
+            <span style="font-size:24px;">🛵</span>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:15px; font-weight:700; color:#ffffff;" id="dp-profile-name">Ramesh Kumar</div>
+            <div style="font-size:11.5px; color:#cbd5e1;" id="dp-profile-vehicle">Hero Electric • TS09 EQ 4412</div>
+            <div style="display:flex; align-items:center; gap:6px; margin-top:4px;">
+              <span class="dp-rating-badge">★ 4.9 (148 trips)</span>
+              <span class="dp-status-pill" id="dp-status-badge">● Ready to Deliver</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Summary & Metrics Grid -->
+        <div class="delivery-metrics-grid">
+          <div class="metric-card">
+            <div class="metric-num" id="dp-today-count">5</div>
+            <div class="metric-lbl" data-i18n="todayDeliveries">Today's Deliveries</div>
+          </div>
+          <div class="metric-card earnings">
+            <div class="metric-num" id="dp-today-earnings">₹275</div>
+            <div class="metric-lbl" data-i18n="todayEarnings">Today's Earnings</div>
+          </div>
+        </div>
+
+        <!-- New Order Notifications Section -->
+        <div class="delivery-section">
+          <div class="section-header-row">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span class="section-title" data-i18n="newOrderNotifications">New Order Notifications</span>
+              <span class="notification-badge" id="dp-pending-badge">1</span>
+            </div>
+          </div>
+
+          <div id="dp-notifications-container">
+            <!-- Dynamically populated by renderDeliveryPartnerHome() -->
+          </div>
+        </div>
+
+        <!-- Active Deliveries Section -->
+        <div class="delivery-section">
+          <div class="section-header-row">
+            <span class="section-title" data-i18n="activeDeliveries">Active Deliveries</span>
+          </div>
+
+          <div id="dp-active-delivery-container">
+            <!-- Dynamically populated when an order is accepted -->
+          </div>
+        </div>
+
+        <!-- Recent Delivery Activity -->
+        <div class="delivery-section">
+          <div class="section-header-row">
+            <span class="section-title" data-i18n="recentActivity">Recent Delivery Activity</span>
+          </div>
+
+          <div id="dp-recent-activity-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Quick Switcher to Other Apps -->
+        <div class="delivery-card" style="margin-top:6px; background:#0f172a; border:1px solid #1e293b; text-align:center;">
+          <div style="font-size:11.5px; font-weight:700; color:#94a3b8; margin-bottom:8px;">Switch Application Portal</div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-outline btn-sm" style="flex:1; font-size:11px; color:#a5d6a7; border-color:#2e7d32;" onclick="navigateTo(5)">👨‍🌾 Farmer App</button>
+            <button class="btn btn-outline btn-sm" style="flex:1; font-size:11px; color:#90caf9; border-color:#1976d2;" onclick="navigateTo(11)">🛒 Customer App</button>
+            <button class="btn btn-outline btn-sm" style="flex:1; font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="navigateTo(3)">🏠 Welcome</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Prototype Modal ("Explore Live Prototype" button) -->
+  <div id="prototype-modal" class="app-modal">
+    <div class="modal-content">
+      <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; margin:0 auto 10px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      </div>
+      <h3 style="font-size:16px; margin-bottom:4px;" data-i18n="exploreLiveProto">Explore Live Prototype</h3>
+      <p style="font-size:12px; margin-bottom:12px;" data-i18n="protoModalDesc">Configurable URL placeholder for your public deployed prototype.</p>
+      
+      <div class="form-group" style="margin-bottom:14px;">
+        <label class="form-label" data-i18n="deploymentUrl">Deployment URL</label>
+        <input type="text" id="prototype-url-field" class="form-input" value="https://agrinex-demo.web.app">
+      </div>
+
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-primary" style="flex:1;" onclick="openLivePrototypeLink()" data-i18n="openUrl">Open URL</button>
+        <button class="btn btn-secondary" style="flex:1;" onclick="closePrototypeModal()" data-i18n="close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
